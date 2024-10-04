@@ -1,4 +1,4 @@
-    <!doctype html>
+<!doctype html>
     <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
     <!-- Mirrored from themesbrand.com/velzon/html/default/dashboard-analytics.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Jul 2022 06:35:06 GMT -->
     <head>
@@ -28,11 +28,10 @@
     </head>
 
     <body>
-
         <!-- Begin page -->
         <div id="layout-wrapper">
 
-            <header id="page-topbar">
+            <header id="page-topbar"> 
         <div class="layout-width">
             <div class="navbar-header">
                 <div class="d-flex">
@@ -99,7 +98,7 @@
                                     <span>Analytics Dashboard</span>
                                 </a>
 
-                                <!-- item-->
+                                <!-- item--> 
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
                                     <span>Help Center</span>
@@ -588,127 +587,46 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2112</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="flex-shrink-0 me-2">
-                                                                <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle" />
-                                                            </div>
-                                                            <div class="flex-grow-1">Alex Smith</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Clothes</td>
-                                                    <td>
-                                                        <span class="text-success">$109.00</span>
-                                                    </td>
-                                                    <td>Zoetic Fashion</td>
-                                                    <td>
-                                                        <span class="badge badge-soft-success">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="fs-14 fw-medium mb-0">5.0<span class="text-muted fs-11 ms-1">(61 votes)</span></h5>
-                                                    </td>
-                                                </tr><!-- end tr -->
-                                                <tr>
-                                                    <td>
-                                                        <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2111</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="flex-shrink-0 me-2">
-                                                                <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle" />
-                                                            </div>
-                                                            <div class="flex-grow-1">Jansh Brown</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Kitchen Storage</td>
-                                                    <td>
-                                                        <span class="text-success">$149.00</span>
-                                                    </td>
-                                                    <td>Micro Design</td>
-                                                    <td>
-                                                        <span class="badge badge-soft-warning">Pending</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="fs-14 fw-medium mb-0">4.5<span class="text-muted fs-11 ms-1">(61 votes)</span></h5>
-                                                    </td>
-                                                </tr><!-- end tr -->
-                                                <tr>
-                                                    <td>
-                                                        <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2109</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="flex-shrink-0 me-2">
-                                                                <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle" />
-                                                            </div>
-                                                            <div class="flex-grow-1">Ayaan Bowen</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Bike Accessories</td>
-                                                    <td>
-                                                        <span class="text-success">$215.00</span>
-                                                    </td>
-                                                    <td>Nesta Technologies</td>
-                                                    <td>
-                                                        <span class="badge badge-soft-success">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="fs-14 fw-medium mb-0">4.9<span class="text-muted fs-11 ms-1">(89 votes)</span></h5>
-                                                    </td>
-                                                </tr><!-- end tr -->
-                                                <tr>
-                                                    <td>
-                                                        <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2108</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="flex-shrink-0 me-2">
-                                                                <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle" />
-                                                            </div>
-                                                            <div class="flex-grow-1">Prezy Mark</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Furniture</td>
-                                                    <td>
-                                                        <span class="text-success">$199.00</span>
-                                                    </td>
-                                                    <td>Syntyce Solutions</td>
-                                                    <td>
-                                                        <span class="badge badge-soft-danger">Unpaid</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="fs-14 fw-medium mb-0">4.3<span class="text-muted fs-11 ms-1">(47 votes)</span></h5>
-                                                    </td>
-                                                </tr><!-- end tr -->
-                                                <tr>
-                                                    <td>
-                                                        <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2107</a>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="flex-shrink-0 me-2">
-                                                                <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle" />
-                                                            </div>
-                                                            <div class="flex-grow-1">Vihan Hudda</div>
-                                                        </div>
-                                                    </td>
-                                                    <td>Bags and Wallets</td>
-                                                    <td>
-                                                        <span class="text-success">$330.00</span>
-                                                    </td>
-                                                    <td>iTest Factory</td>
-                                                    <td>
-                                                        <span class="badge badge-soft-success">Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="fs-14 fw-medium mb-0">4.7<span class="text-muted fs-11 ms-1">(161 votes)</span></h5>
-                                                    </td>
-                                                </tr><!-- end tr -->
-                                            </tbody><!-- end tbody -->
+                                            <?php
+// Specify the API endpoint
+$apiUrl = 'https://auth-web-api.onrender.com/api/users';
+
+// Fetch the JSON data from the API
+$jsonData = file_get_contents($apiUrl);
+
+// Decode the JSON data to an associative array
+$data = json_decode($jsonData, true);
+
+// Check if data is successfully fetched
+if ($data) {
+    // Initialize a serial number
+    $serialNumber = 1;
+    
+    foreach ($data as $user) {
+        echo "<tr>";
+        // Display the serial number instead of user ID
+        echo "<td><a href='apps-ecommerce-order-details.html' class='fw-medium link-primary'>" . $serialNumber++ . "</a></td>"; // Serial Number
+        echo "<td>";
+        echo "<div class='d-flex align-items-center'>";
+        echo "<div class='flex-shrink-0 me-2'>";
+        echo "<img src='assets/images/users/avatar-1.jpg' alt='' class='avatar-xs rounded-circle' />"; // Placeholder image
+        echo "</div>";
+        echo "<div class='flex-grow-1'>" . htmlspecialchars($user['name']) . "</div>"; // Dynamic Name
+        echo "</div></td>";
+        echo "<td>" . htmlspecialchars($user['email']) . "</td>"; // Dynamic Mail
+        echo "<td>" . htmlspecialchars($user['ip']) . "</td>"; // Dynamic IP
+        // Display only the country from the location
+        echo "<td>" . htmlspecialchars($user['location']['country']) . "</td>"; // Only Country
+        echo "<td><span class='badge badge-soft-success'>Paid</span></td>"; // Dynamic Status (you can customize this based on user data)
+        echo "<td>" . htmlspecialchars(date('Y-m-d', strtotime($user['signupDate']))) . "</td>"; // Dynamic Registration Date
+        echo "<td>1.0</td>"; // Static Version, can be dynamic if necessary
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='8' class='text-center'>Failed to retrieve data.</td></tr>";
+}
+?>
+̥
                                         </table><!-- end table -->
                                     </div>
                                 </div>
