@@ -28,6 +28,7 @@
     </head>
 
     <body>
+
         <!-- Begin page -->
         <div id="layout-wrapper">
 
@@ -98,7 +99,7 @@
                                     <span>Analytics Dashboard</span>
                                 </a>
 
-                                <!-- item--> 
+                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i class="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
                                     <span>Help Center</span>
@@ -305,7 +306,7 @@
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <div classl̥="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0">Analytics</h4>
 
                                     <div class="page-title-right">
@@ -328,10 +329,21 @@
                                             <div class="card card-animate">
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between">
-                                                        <div>
+                                                        <!-- <div>
                                                             <p class="fw-medium text-muted mb-0">Users</p>
                                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="28.05">0</span>k</h2>
                                                             <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"> <i class="ri-arrow-up-line align-middle"></i> 16.24 % </span> vs. previous month</p>
+                                                        </div> -->
+                                                        <div>
+                                                            <p class="fw-medium text-muted mb-0">Users</p>
+                                                            <h2 class="mt-4 ff-secondary fw-semibold">
+                                                                <span class="counter-value" data-target="0">0</span> <!-- Placeholder initially -->
+                                                            </h2>
+                                                            <p class="mb-0 text-muted">
+                                                                <span class="badge bg-light text-success mb-0">
+                                                                    <i class="ri-arrow-up-line align-middle"></i> 16.24 %
+                                                                </span> vs. previous month
+                                                            </p>
                                                         </div>
                                                         <div>
                                                             <div class="avatar-sm flex-shrink-0">
@@ -588,44 +600,57 @@
                                             </thead>
                                             <tbody>
                                             <?php
-// Specify the API endpoint
-$apiUrl = 'https://auth-web-api.onrender.com/api/users';
+                // Specify the API endpoint
+                $apiUrl = 'https://auth-web-api.onrender.com/api/users';
 
-// Fetch the JSON data from the API
-$jsonData = file_get_contents($apiUrl);
+                // Fetch the JSON data from the API
+                $jsonData = @file_get_contents($apiUrl);
+                if ($jsonData === FALSE) {
+                    echo "<tr><td colspan='8' class='text-center'>Unable to fetch data from API.</td></tr>";
+                    return;
+                }
 
-// Decode the JSON data to an associative array
-$data = json_decode($jsonData, true);
+                // Decode the JSON data to an associative array
+                $data = json_decode($jsonData, true);
 
-// Check if data is successfully fetched
-if ($data) {
-    // Initialize a serial number
-    $serialNumber = 1;
-    
-    foreach ($data as $user) {
-        echo "<tr>";
-        // Display the serial number instead of user ID
-        echo "<td><a href='apps-ecommerce-order-details.html' class='fw-medium link-primary'>" . $serialNumber++ . "</a></td>"; // Serial Number
-        echo "<td>";
-        echo "<div class='d-flex align-items-center'>";
-        echo "<div class='flex-shrink-0 me-2'>";
-        echo "<img src='assets/images/users/avatar-1.jpg' alt='' class='avatar-xs rounded-circle' />"; // Placeholder image
-        echo "</div>";
-        echo "<div class='flex-grow-1'>" . htmlspecialchars($user['name']) . "</div>"; // Dynamic Name
-        echo "</div></td>";
-        echo "<td>" . htmlspecialchars($user['email']) . "</td>"; // Dynamic Mail
-        echo "<td>" . htmlspecialchars($user['ip']) . "</td>"; // Dynamic IP
-        // Display only the country from the location
-        echo "<td>" . htmlspecialchars($user['location']['country']) . "</td>"; // Only Country
-        echo "<td><span class='badge badge-soft-success'>Paid</span></td>"; // Dynamic Status (you can customize this based on user data)
-        echo "<td>" . htmlspecialchars(date('Y-m-d', strtotime($user['signupDate']))) . "</td>"; // Dynamic Registration Date
-        echo "<td>1.0</td>"; // Static Version, can be dynamic if necessary
-        echo "</tr>";
-    }
-} else {
-    echo "<tr><td colspan='8' class='text-center'>Failed to retrieve data.</td></tr>";
-}
-?>
+                // Count total users
+                $totalUsers = count($data);
+
+                // Display user count in the previously defined placeholder
+                echo "<script>
+                        document.querySelector('.counter-value').setAttribute('data-target', '$totalUsers');
+                        document.querySelector('.counter-value').innerText = " . ($totalUsers >= 1000 ? number_format($totalUsers / 1000, 2) . 'k' : $totalUsers) . ";
+                    </script>";
+
+                // Check if data is successfully fetched
+                if ($data) {
+                    // Initialize a serial number
+                    $serialNumber = 1;
+
+                    foreach ($data as $user) {
+                        echo "<tr>";
+                        // Display the serial number instead of user ID
+                        echo "<td><a href='apps-ecommerce-order-details.html' class='fw-medium link-primary'>" . $serialNumber++ . "</a></td>"; // Serial Number
+                        echo "<td>";
+                        echo "<div class='d-flex align-items-center'>";
+                        $avatarUrl = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : 'assets/images/users/avatar-1.jpg';
+                        echo "<img src='$avatarUrl' alt='' class='avatar-xs rounded-circle' />"; // Dynamic Avatar
+                        echo "</div>";
+                        echo "<div class='flex-grow-1'>" . htmlspecialchars($user['name']) . "</div>"; // Dynamic Name
+                        echo "</div></td>";
+                        echo "<td>" . htmlspecialchars($user['email']) . "</td>"; // Dynamic Mail
+                        echo "<td>" . htmlspecialchars($user['ip']) . "</td>"; // Dynamic IP
+                        // Display only the country from the location
+                        echo "<td>" . htmlspecialchars($user['location']['country']) . "</td>"; // Only Country
+                        echo "<td><span class='badge badge-soft-success'>Paid</span></td>"; // Dynamic Status
+                        echo "<td>" . htmlspecialchars(date('Y-m-d', strtotime($user['signupDate']))) . "</td>"; // Dynamic Registration Date
+                        echo "<td>1.0</td>"; // Static Version
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='8' class='text-center'>Failed to retrieve data.</td></tr>";
+                }
+            ?>
 ̥
                                         </table><!-- end table -->
                                     </div>
