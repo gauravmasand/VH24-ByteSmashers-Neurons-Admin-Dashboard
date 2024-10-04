@@ -1,9 +1,14 @@
 {
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "36dd46f1a08e23d40ade1c4f1fccef83",
     "packages": [
         {
             "name": "gemini-api-php/client",
             "version": "v1.4.4",
-            "version_normalized": "1.4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gemini-api-php/client.git",
@@ -34,9 +39,7 @@
             "suggest": {
                 "ext-curl": "Required for streaming responses"
             },
-            "time": "2024-08-10T13:21:31+00:00",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "GeminiAPI\\": "src/"
@@ -68,12 +71,11 @@
                 "issues": "https://github.com/gemini-api-php/client/issues",
                 "source": "https://github.com/gemini-api-php/client/tree/v1.4.4"
             },
-            "install-path": "../gemini-api-php/client"
+            "time": "2024-08-10T13:21:31+00:00"
         },
         {
             "name": "nyholm/psr7",
             "version": "1.8.2",
-            "version_normalized": "1.8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nyholm/psr7.git",
@@ -102,14 +104,12 @@
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.4",
                 "symfony/error-handler": "^4.4"
             },
-            "time": "2024-09-09T07:06:30+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.8-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Nyholm\\Psr7\\": "src/"
@@ -149,12 +149,11 @@
                     "type": "github"
                 }
             ],
-            "install-path": "../nyholm/psr7"
+            "time": "2024-09-09T07:06:30+00:00"
         },
         {
             "name": "orhanerday/open-ai",
             "version": "5.2",
-            "version_normalized": "5.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orhanerday/open-ai.git",
@@ -176,9 +175,7 @@
                 "pestphp/pest": "^1.20",
                 "spatie/ray": "^1.28"
             },
-            "time": "2024-05-29T12:31:54+00:00",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Orhanerday\\OpenAi\\": "src"
@@ -211,12 +208,11 @@
                     "type": "github"
                 }
             ],
-            "install-path": "../orhanerday/open-ai"
+            "time": "2024-05-29T12:31:54+00:00"
         },
         {
             "name": "php-http/discovery",
             "version": "1.20.0",
-            "version_normalized": "1.20.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
@@ -252,13 +248,11 @@
                 "sebastian/comparator": "^3.0.5 || ^4.0.8",
                 "symfony/phpunit-bridge": "^6.4.4 || ^7.0.1"
             },
-            "time": "2024-10-02T11:20:13+00:00",
             "type": "composer-plugin",
             "extra": {
                 "class": "Http\\Discovery\\Composer\\Plugin",
                 "plugin-optional": true
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Http\\Discovery\\": "src/"
@@ -293,12 +287,11 @@
                 "issues": "https://github.com/php-http/discovery/issues",
                 "source": "https://github.com/php-http/discovery/tree/1.20.0"
             },
-            "install-path": "../php-http/discovery"
+            "time": "2024-10-02T11:20:13+00:00"
         },
         {
             "name": "psr/container",
             "version": "2.0.2",
-            "version_normalized": "2.0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
@@ -313,14 +306,12 @@
             "require": {
                 "php": ">=7.4.0"
             },
-            "time": "2021-11-05T16:47:00+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Psr\\Container\\": "src/"
@@ -349,12 +340,11 @@
                 "issues": "https://github.com/php-fig/container/issues",
                 "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "install-path": "../psr/container"
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "psr/http-client",
             "version": "1.0.3",
-            "version_normalized": "1.0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-client.git",
@@ -370,14 +360,12 @@
                 "php": "^7.0 || ^8.0",
                 "psr/http-message": "^1.0 || ^2.0"
             },
-            "time": "2023-09-23T14:17:50+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Psr\\Http\\Client\\": "src/"
@@ -404,12 +392,11 @@
             "support": {
                 "source": "https://github.com/php-fig/http-client"
             },
-            "install-path": "../psr/http-client"
+            "time": "2023-09-23T14:17:50+00:00"
         },
         {
             "name": "psr/http-factory",
             "version": "1.1.0",
-            "version_normalized": "1.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-factory.git",
@@ -425,14 +412,12 @@
                 "php": ">=7.1",
                 "psr/http-message": "^1.0 || ^2.0"
             },
-            "time": "2024-04-15T12:06:14+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Psr\\Http\\Message\\": "src/"
@@ -462,12 +447,11 @@
             "support": {
                 "source": "https://github.com/php-fig/http-factory"
             },
-            "install-path": "../psr/http-factory"
+            "time": "2024-04-15T12:06:14+00:00"
         },
         {
             "name": "psr/http-message",
             "version": "2.0",
-            "version_normalized": "2.0.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-message.git",
@@ -482,14 +466,12 @@
             "require": {
                 "php": "^7.2 || ^8.0"
             },
-            "time": "2023-04-04T09:54:51+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Psr\\Http\\Message\\": "src/"
@@ -518,12 +500,11 @@
             "support": {
                 "source": "https://github.com/php-fig/http-message/tree/2.0"
             },
-            "install-path": "../psr/http-message"
+            "time": "2023-04-04T09:54:51+00:00"
         },
         {
             "name": "psr/log",
             "version": "3.0.2",
-            "version_normalized": "3.0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
@@ -538,14 +519,12 @@
             "require": {
                 "php": ">=8.0.0"
             },
-            "time": "2024-09-11T13:17:53+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Psr\\Log\\": "src"
@@ -571,12 +550,11 @@
             "support": {
                 "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
-            "install-path": "../psr/log"
+            "time": "2024-09-11T13:17:53+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
             "version": "v3.5.0",
-            "version_normalized": "3.5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
@@ -591,7 +569,6 @@
             "require": {
                 "php": ">=8.1"
             },
-            "time": "2024-04-18T09:32:20+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -602,7 +579,6 @@
                     "url": "https://github.com/symfony/contracts"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "files": [
                     "function.php"
@@ -641,12 +617,11 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/deprecation-contracts"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/http-client",
             "version": "v7.1.5",
-            "version_normalized": "7.1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
@@ -691,9 +666,7 @@
                 "symfony/rate-limiter": "^6.4|^7.0",
                 "symfony/stopwatch": "^6.4|^7.0"
             },
-            "time": "2024-09-20T13:35:23+00:00",
             "type": "library",
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\HttpClient\\": ""
@@ -738,12 +711,11 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/http-client"
+            "time": "2024-09-20T13:35:23+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
             "version": "v3.5.0",
-            "version_normalized": "3.5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client-contracts.git",
@@ -758,7 +730,6 @@
             "require": {
                 "php": ">=8.1"
             },
-            "time": "2024-04-18T09:32:20+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -769,7 +740,6 @@
                     "url": "https://github.com/symfony/contracts"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Symfony\\Contracts\\HttpClient\\": ""
@@ -819,12 +789,11 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/http-client-contracts"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/service-contracts",
             "version": "v3.5.0",
-            "version_normalized": "3.5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
@@ -844,7 +813,6 @@
             "conflict": {
                 "ext-psr": "<1.1|>=2"
             },
-            "time": "2024-04-18T09:32:20+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -855,7 +823,6 @@
                     "url": "https://github.com/symfony/contracts"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Symfony\\Contracts\\Service\\": ""
@@ -905,9 +872,16 @@
                     "type": "tidelift"
                 }
             ],
-            "install-path": "../symfony/service-contracts"
+            "time": "2024-04-18T09:32:20+00:00"
         }
     ],
-    "dev": true,
-    "dev-package-names": []
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
 }

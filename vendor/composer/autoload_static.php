@@ -4,19 +4,89 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb239eecd47a4a5375c4ef9e748e7b25a
+class ComposerStaticInitc14c8a0f9af6ad8aed7676fcbaaa2e6e
 {
+    public static $files = array (
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Contracts\\HttpClient\\' => 29,
+            'Symfony\\Component\\HttpClient\\' => 29,
+        ),
         'P' => 
         array (
-            'PHPMailer\\PHPMailer\\' => 20,
+            'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
+            'Psr\\Http\\Client\\' => 16,
+            'Psr\\Container\\' => 14,
+        ),
+        'O' => 
+        array (
+            'Orhanerday\\OpenAi\\' => 18,
+        ),
+        'N' => 
+        array (
+            'Nyholm\\Psr7\\' => 12,
+        ),
+        'H' => 
+        array (
+            'Http\\Discovery\\' => 15,
+        ),
+        'G' => 
+        array (
+            'GeminiAPI\\' => 10,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'PHPMailer\\PHPMailer\\' => 
+        'Symfony\\Contracts\\Service\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+            0 => __DIR__ . '/..' . '/symfony/service-contracts',
+        ),
+        'Symfony\\Contracts\\HttpClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-client-contracts',
+        ),
+        'Symfony\\Component\\HttpClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-client',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Psr\\Http\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Orhanerday\\OpenAi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/orhanerday/open-ai/src',
+        ),
+        'Nyholm\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nyholm/psr7/src',
+        ),
+        'Http\\Discovery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/discovery/src',
+        ),
+        'GeminiAPI\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gemini-api-php/client/src',
         ),
     );
 
@@ -27,9 +97,9 @@ class ComposerStaticInitb239eecd47a4a5375c4ef9e748e7b25a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb239eecd47a4a5375c4ef9e748e7b25a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb239eecd47a4a5375c4ef9e748e7b25a::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb239eecd47a4a5375c4ef9e748e7b25a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitc14c8a0f9af6ad8aed7676fcbaaa2e6e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitc14c8a0f9af6ad8aed7676fcbaaa2e6e::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc14c8a0f9af6ad8aed7676fcbaaa2e6e::$classMap;
 
         }, null, ClassLoader::class);
     }
