@@ -298,9 +298,9 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
-            <div class="main-content">
+            <div class="main-content"> 
 
-                <div class="page-content">
+                <div class="page-content"> 
                     <div class="container-fluid">
 
                         <!-- start page title -->
