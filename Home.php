@@ -1,3 +1,22 @@
+<?php
+// API URL to fetch users
+$apiUrl = 'https://auth-web-api.onrender.com/api/users';
+
+// Fetch user data from the API
+$jsonData = @file_get_contents($apiUrl);
+
+// Initialize totalUsers count to 0 in case of failure
+$totalUsers = 0;
+
+// Check if data is fetched successfully
+if ($jsonData !== false) {
+    // Decode the JSON data into an associative array
+    $data = json_decode($jsonData, true);
+
+    // Count the total number of users
+    $totalUsers = count($data);
+}
+?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
     data-sidebar-image="none">
@@ -339,22 +358,16 @@
                                         <div class="card card-animate">
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-between">
-                                                    <!-- <div>
-                                                            <p class="fw-medium text-muted mb-0">Users</p>
-                                                            <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="28.05">0</span>k</h2>
-                                                            <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"> <i class="ri-arrow-up-line align-middle"></i> 16.24 % </span> vs. previous month</p>
-                                                        </div> -->
                                                     <div>
-                                                        <p class="fw-medium text-muted mb-0">Users</p>
-                                                        <h2 class="mt-4 ff-secondary fw-semibold">
-                                                            <span class="counter-value" data-target="0">0</span>
-                                                            <!-- Placeholder initially -->
-                                                        </h2>
-                                                        <p class="mb-0 text-muted">
-                                                            <span class="badge bg-light text-success mb-0">
-                                                                <i class="ri-arrow-up-line align-middle"></i> 16.24 %
-                                                            </span> vs. previous month
-                                                        </p>
+                                                        <!-- Displaying the total number of users -->
+                                                        <div>
+                                                            <p class="fw-medium text-muted mb-0">Users</p>
+                                                            <h2 class="mt-4 ff-secondary fw-semibold">
+                                                                <!-- Dynamically insert total users in data-target and as the content of the span -->
+                                                                <span class="counter-value"
+                                                                    data-target="<?= $totalUsers ?>"><?= $totalUsers ?></span>
+                                                            </h2>
+                                                        </div>
                                                     </div>
                                                     <div>
                                                         <div class="avatar-sm flex-shrink-0">
@@ -624,22 +637,33 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Recent Users</h4>
+                                    <h4 class="card-    title mb-0 flex-grow-1">Recent Users</h4>
                                     <div class="flex-shrink-0 d-flex align-items-center">
                                         <!-- Filter Form -->
                                         <form method="GET" action="">
                                             <label for="statusFilter" class="me-2">Filter by Status:</label>
-                                            <select name="statusFilter" id="statusFilter" class="form-select form-select-sm w-auto d-inline-block me-3">
-                                                <option value="">All</option>
-                                                <option value="Authorized" <?= (isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'Authorized') ? 'selected' : ''; ?>>Authorized</option>
-                                                <option value="Unauthorized" <?= (isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'Unauthorized') ? 'selected' : ''; ?>>Unauthorized</option>
+                                            <select name="statusFilter" id="statusFilter"
+                                                class="form-select form-select-sm w-auto d-inline-block me-3">
+                                                <option value=""
+                                                    <?= (isset($_GET['statusFilter']) && $_GET['statusFilter'] == '') ? 'selected' : ''; ?>>
+                                                    All</option>
+                                                <option value="Authorized"
+                                                    <?= (isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'Authorized') ? 'selected' : ''; ?>>
+                                                    Authorized
+                                                </option>
+                                                <option value="Unauthorized"
+                                                    <?= (isset($_GET['statusFilter']) && $_GET['statusFilter'] == 'Unauthorized') ? 'selected' : ''; ?>>
+                                                    Unauthorized
+                                                </option>
                                             </select>
+
                                             <button type="submit" class="btn btn-primary btn-sm">Apply Filter</button>
                                         </form>
 
                                         <!-- PDF Generation Form -->
                                         <form method="post" action="generate_report.php" class="ms-3">
-                                            <input type="hidden" name="statusFilter" value="<?= isset($_GET['statusFilter']) ? $_GET['statusFilter'] : '' ?>">
+                                            <input type="hidden" name="statusFilter"
+                                                value="<?= isset($_GET['statusFilter']) ? $_GET['statusFilter'] : '' ?>">
                                             <button type="submit" class="btn btn-soft-info btn-sm">
                                                 <i class="ri-file-list-3-line align-middle"></i> Generate PDF Report
                                             </button>
@@ -649,7 +673,8 @@
 
                                 <div class="card-body">
                                     <div class="table-responsive table-card">
-                                        <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
+                                        <table
+                                            class="table table-borderless table-centered align-middle table-nowrap mb-0">
                                             <thead class="text-muted table-light">
                                                 <tr>
                                                     <th scope="col">ID</th>
@@ -664,12 +689,7 @@
                                             </thead>
                                             <tbody id="userTableBody">
                                                 <?php
-                                                // API Endpoint
-                                                $apiUrl = 'https://auth-web-api.onrender.com/api/users';
-
-                                                // Fetch data
-                                                $jsonData = @file_get_contents($apiUrl);
-                                                if ($jsonData === FALSE) {
+                                                if ($jsonData === false) {
                                                     echo "<tr><td colspan='8' class='text-center'>Unable to fetch data from API.</td></tr>";
                                                 } else {
                                                     $data = json_decode($jsonData, true);
@@ -677,9 +697,7 @@
                                                     $filteredUsers = array_filter($data, function ($user) use ($statusFilter) {
                                                         return $statusFilter === '' || (isset($user['status']) && $user['status'] === $statusFilter);
                                                     });
-
-                                                    $totalUsers = count($filteredUsers);
-                                                    if ($filteredUsers) {
+                                                    if (!empty($filteredUsers)) {
                                                         $serialNumber = 1;
                                                         foreach ($filteredUsers as $user) {
                                                             displayUserRow($serialNumber++, $user);
@@ -689,7 +707,6 @@
                                                     }
                                                 }
 
-                                                // Function to display user data rows
                                                 function displayUserRow($serialNumber, $user)
                                                 {
                                                     $name = htmlspecialchars($user['name']);
@@ -698,7 +715,10 @@
                                                     $country = htmlspecialchars($user['location']['country'] ?? 'N/A');
                                                     $status = htmlspecialchars($user['status'] ?? 'Unknown');
                                                     $signupDate = htmlspecialchars(date('Y-m-d', strtotime($user['signupDate'])));
-                                                    $statusBadge = $status == 'Authorized' ? "<span class='badge badge-soft-success'>$status</span>" : "<span class='badge badge-soft-danger'>$status</span>";
+                                                    $statusBadge = $status === 'Authorized'
+                                                        ? "<span class='badge badge-soft-success'>$status</span>"
+                                                        : "<span class='badge badge-soft-danger'>$status</span>";
+                                                    $v = htmlspecialchars($user['__v']);
 
                                                     echo "<tr class='user-row' data-status='$status'>
                                                     <td><a href='#' class='fw-medium link-primary'>$serialNumber</a></td>
@@ -708,11 +728,12 @@
                                                     <td>$country</td>
                                                     <td>$statusBadge</td>
                                                     <td>$signupDate</td>
-                                                    <td>1.0</td>
+                                                    <td>$v</td>
                                                 </tr>";
                                                 }
                                                 ?>
                                             </tbody>
+
                                         </table><!-- end table -->
                                     </div>
                                 </div>
@@ -1418,7 +1439,6 @@
 
         <!-- App js -->
         <script src="assets/js/app.js"></script>
-
         <script>
             // Fetch and process the user and session data from the JSON file
             fetch('path_to_your_file/authdb.users.json') // Replace with the correct path to your JSON file
