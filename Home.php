@@ -7,15 +7,20 @@ $jsonData = @file_get_contents($apiUrl);
 
 // Initialize totalUsers count to 0 in case of failure
 $totalUsers = 0;
+$totalSessionTime = 0;
 
-// Check if data is fetched successfully
 if ($jsonData !== false) {
-    // Decode the JSON data into an associative array
     $data = json_decode($jsonData, true);
-
-    // Count the total number of users
     $totalUsers = count($data);
+    foreach ($data as $user) {
+        $sessionTime = isset($user['sessiontime']) ? (int)$user['sessiontime'] : 0;
+        $totalSessionTime += $sessionTime;
+    }
+
+// Calculate bounce rate
+$bounceRate = ($totalSessionTime/$totalSessionTime/20) *100;
 }
+//echo "<script>alert('$totalSessionTime');</script>";
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -363,10 +368,16 @@ if ($jsonData !== false) {
                                                         <div>
                                                             <p class="fw-medium text-muted mb-0">Users</p>
                                                             <h2 class="mt-4 ff-secondary fw-semibold">
+
                                                                 <!-- Dynamically insert total users in data-target and as the content of the span -->
                                                                 <span class="counter-value"
                                                                     data-target="<?= $totalUsers ?>"><?= $totalUsers ?></span>
                                                             </h2>
+                                                            <p class="mb-0 text-muted">
+                                                            <span class="badge bg-light text-danger mb-0">
+                                                                <i class="ri-arrow-down-line align-middle"></i> 3.96 %
+                                                            </span> vs. previous month
+                                                        </p>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -387,21 +398,22 @@ if ($jsonData !== false) {
                                                 <div class="d-flex justify-content-between">
                                                     <div>
                                                         <p class="fw-medium text-muted mb-0">Sessions</p>
-                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span
-                                                                class="counter-value" data-target="97.66">0</span>k</h2>
-                                                        <p class="mb-0 text-muted"><span
-                                                                class="badge bg-light text-danger mb-0"> <i
-                                                                    class="ri-arrow-down-line align-middle"></i> 3.96 %
-                                                            </span> vs. previous month</p>
+                                                        <h2 class="mt-4 ff-secondary fw-semibold">
+                                                        <span class="counter-value"
+                                                                    data-target="<?= $totalSessionTime ?>"><?= $totalSessionTime ?></span> Minutes
+                                                        </h2>
+
+                                                        <p class="mb-0 text-muted">
+                                                            <span class="badge bg-light text-danger mb-0">
+                                                                <i class="ri-arrow-down-line align-middle"></i> 3.96 %
+                                                            </span> vs. previous month
+                                                        </p>
                                                     </div>
-                                                    <div>
-                                                        <div class="avatar-sm flex-shrink-0">
+                                                    <div class="avatar-sm flex-shrink-0">
                                                             <span class="avatar-title bg-soft-info rounded-circle fs-2">
-                                                                <i data-feather="activity"
-                                                                    class="text-info text-white"></i>
+                                                                <i data-feather="users" class="text-info"></i>
                                                             </span>
                                                         </div>
-                                                    </div>
                                                 </div>
                                             </div><!-- end card body -->
                                         </div> <!-- end card-->
@@ -442,8 +454,8 @@ if ($jsonData !== false) {
                                                 <div class="d-flex justify-content-between">
                                                     <div>
                                                         <p class="fw-medium text-muted mb-0">Bounce Rate</p>
-                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span
-                                                                class="counter-value" data-target="33.48">0</span>%</h2>
+                                                        <h2 class="mt-4 ff-secondary fw-semibold"> <span class="counter-value"
+                                                        data-target="<?= $bounceRate ?>"><?= $bounceRate?></span>%</h2>
                                                         <p class="mb-0 text-muted"><span
                                                                 class="badge bg-light text-success mb-0"> <i
                                                                     class="ri-arrow-up-line align-middle"></i> 7.05 %
@@ -1441,7 +1453,7 @@ if ($jsonData !== false) {
         <script src="assets/js/app.js"></script>
         <script>
             // Fetch and process the user and session data from the JSON file
-            fetch('path_to_your_file/authdb.users.json') // Replace with the correct path to your JSON file
+            fetch('https://auth-web-api.onrender.com/api/users') // Replace with the correct path to your JSON file
                 .then(response => response.json())
                 .then(data => {
                     // Initialize objects to hold user and session counts by country
@@ -1535,6 +1547,8 @@ if ($jsonData !== false) {
                     sessionChart.render();
                 })
                 .catch(error => console.error('Error fetching data:', error));
+
+            
         </script>
 
 
