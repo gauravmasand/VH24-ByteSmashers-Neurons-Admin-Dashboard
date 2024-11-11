@@ -1,26 +1,72 @@
 <?php
-// API URL to fetch users
 $apiUrl = 'https://auth-web-api.onrender.com/api/users';
 
-// Fetch user data from the API
 $jsonData = @file_get_contents($apiUrl);
 
-// Initialize totalUsers count to 0 in case of failure
 $totalUsers = 0;
 $totalSessionTime = 0;
+$activeUsers = 0;
+$inactiveUsers = 0;
+$totalActions = 0; // for Average Actions per Session
+$topPagesVisited = [];
+$sessionCounts = [];
 
 if ($jsonData !== false) {
     $data = json_decode($jsonData, true);
     $totalUsers = count($data);
+
     foreach ($data as $user) {
         $sessionTime = isset($user['sessiontime']) ? (int)$user['sessiontime'] : 0;
         $totalSessionTime += $sessionTime;
-    }
 
-// Calculate bounce rate
-$bounceRate = ($totalSessionTime/$totalSessionTime/20) *100;
+        if ($sessionTime > 0) {
+            $activeUsers++;
+        } else {
+            $inactiveUsers++;
+        }
+
+        $actions = isset($user['actions']) ? (int)$user['actions'] : 0;
+        $totalActions += $actions;
+
+        $page = isset($user['top_page']) ? $user['top_page'] : 'Unknown';
+        if (!isset($topPagesVisited[$page])) {
+            $topPagesVisited[$page] = 0;
+        }
+        $topPagesVisited[$page]++;
+        
+        $sessionHour = isset($user['login_hour']) ? (int)$user['login_hour'] : null;
+        if ($sessionHour !== null) {
+            if (!isset($sessionCounts[$sessionHour])) {
+                $sessionCounts[$sessionHour] = 0;
+            }
+            $sessionCounts[$sessionHour]++;
+        }
+    }
+    
+    $averageSessionTime = $totalUsers > 0 ? $totalSessionTime / $totalUsers : 0;
+
+    $bounceRate = ($totalSessionTime / ($totalSessionTime / 20)) * 100;
+
+    $avgActionsPerSession = $totalUsers > 0 ? $totalActions / $totalUsers : 0;
+
+    arsort($topPagesVisited);
+    $topPage = key($topPagesVisited);
+
+    arsort($sessionCounts);
+    $peakUsageTime = key($sessionCounts);
+} else {
+    $averageSessionTime = $bounceRate = $avgActionsPerSession = $peakUsageTime = 'N/A';
+    $topPage = 'N/A';
 }
-//echo "<script>alert('$totalSessionTime');</script>";
+
+echo "Total Users: $totalUsers\n";
+echo "Average Session Time: " . round($averageSessionTime, 2) . " mins\n";
+echo "Active Users: $activeUsers\n";
+echo "Inactive Users: $inactiveUsers\n";
+echo "Bounce Rate: " . round($bounceRate, 2) . "%\n";
+echo "Average Actions per Session: " . round($avgActionsPerSession, 2) . "\n";
+echo "Top Page Visited: $topPage\n";
+echo "Peak Usage Time: $peakUsageTime:00 hrs\n";
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -380,6 +426,144 @@ $bounceRate = ($totalSessionTime/$totalSessionTime/20) *100;
                                                         </p>
                                                         </div>
                                                     </div>
+                    <div class="row">
+    <div class="col-xxl-12">
+        <div class="d-flex flex-column h-100">
+            <div class="row">
+                <!-- Total Users Card -->
+                <div class="col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <!-- Displaying the total number of users -->
+                                    <div>
+                                        <p class="fw-medium text-muted mb-0">Users</p>
+                                        <h2 class="mt-4 ff-secondary fw-semibold">
+                                            <span class="counter-value" data-target="<?= $totalUsers ?>"><?= $totalUsers ?></span>
+                                        </h2>
+                                        <p class="mb-0 text-muted">
+                                            <span class="badge bg-light text-danger mb-0">
+                                                <i class="ri-arrow-down-line align-middle"></i> 3.96 % vs. previous month
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Users Card -->
+                <div class="col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="fw-medium text-muted mb-0">Active Users</p>
+                                    <h2 class="mt-4 ff-secondary fw-semibold">
+                                        <span class="counter-value" data-target="<?= $activeUsers ?>"><?= $activeUsers ?></span>
+                                    </h2>
+                                    <p class="mb-0 text-muted">
+                                        <span class="badge bg-light text-success mb-0">
+                                            <i class="ri-arrow-up-line align-middle"></i> <?= round(($activeUsers / $totalUsers) * 100, 2) ?> %
+                                        </span> of total users
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inactive Users Card -->
+                <div class="col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="fw-medium text-muted mb-0">Inactive Users</p>
+                                    <h2 class="mt-4 ff-secondary fw-semibold">
+                                        <span class="counter-value" data-target="<?= $inactiveUsers ?>"><?= $inactiveUsers ?></span>
+                                    </h2>
+                                    <p class="mb-0 text-muted">
+                                        <span class="badge bg-light text-warning mb-0">
+                                            <i class="ri-arrow-down-line align-middle"></i> <?= round(($inactiveUsers / $totalUsers) * 100, 2) ?> %
+                                        </span> of total users
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Average Session Time Card -->
+                <div class="col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="fw-medium text-muted mb-0">Average Session Time</p>
+                                    <h2 class="mt-4 ff-secondary fw-semibold">
+                                        <span class="counter-value" data-target="<?= round($averageSessionTime, 2) ?>"><?= round($averageSessionTime, 2) ?> mins</span>
+                                    </h2>
+                                    <p class="mb-0 text-muted">
+                                        <span class="badge bg-light text-info mb-0">
+                                            <i class="ri-clock-line align-middle"></i> Average session duration
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Page Visited Card -->
+                <div class="col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="fw-medium text-muted mb-0">Top Page Visited</p>
+                                    <h2 class="mt-4 ff-secondary fw-semibold">
+                                        <span class="counter-value" data-target="<?= $topPage ?>"><?= $topPage ?></span>
+                                    </h2>
+                                    <p class="mb-0 text-muted">
+                                        <span class="badge bg-light text-primary mb-0">
+                                            <i class="ri-page-line align-middle"></i> Most visited page
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Peak Usage Time Card -->
+                <div class="col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="fw-medium text-muted mb-0">Peak Usage Time</p>
+                                    <h2 class="mt-4 ff-secondary fw-semibold">
+                                        <span class="counter-value" data-target="<?= $peakUsageTime ?>"><?= $peakUsageTime ?>:00 hrs</span>
+                                    </h2>
+                                    <p class="mb-0 text-muted">
+                                        <span class="badge bg-light text-dark mb-0">
+                                            <i class="ri-time-line align-middle"></i> Most active hour
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
                                                     <div>
                                                         <div class="avatar-sm flex-shrink-0">
                                                             <span class="avatar-title bg-soft-info rounded-circle fs-2">
